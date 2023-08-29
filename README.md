@@ -11,7 +11,8 @@
 # Запуск проекта 
 
 1. Клонируйте репозиторий на свой компьютер
-   git clone [https://github.com/your-username/your-app.git](https://github.com/aleksandraug/avito.git
+
+git clone [https://github.com/your-username/your-app.git](https://github.com/aleksandraug/avito.git
 )https://github.com/aleksandraug/avito.git
 
 2. Откройте файл проекта avito.xcworkspace в Xcode.
