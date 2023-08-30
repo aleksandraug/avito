@@ -93,6 +93,18 @@ class CardViewController: UIViewController{
         return imageView
     }()
     
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
@@ -161,28 +173,41 @@ class CardViewController: UIViewController{
     }
     
     private func setUpViews(){
-        view.addSubview(dogImageView)
-        view.addSubview(labelTitle)
-        view.addSubview(labelPrice)
-        view.addSubview(labelLocation)
-        view.addSubview(labelTime)
-        view.addSubview(labelEmail)
-        view.addSubview(labelPhone)
-        view.addSubview(labelDescription)
-        view.addSubview(labelContacts)
-        view.addSubview(labelDesc)
-        view.addSubview(activityIndicator)
+        view.addSubview(scrollView)
+        scrollView.addSubview(containerView)
+        containerView.addSubview(dogImageView)
+        containerView.addSubview(labelTitle)
+        containerView.addSubview(labelPrice)
+        containerView.addSubview(labelLocation)
+        containerView.addSubview(labelTime)
+        containerView.addSubview(labelEmail)
+        containerView.addSubview(labelPhone)
+        containerView.addSubview(labelDescription)
+        containerView.addSubview(labelContacts)
+        containerView.addSubview(labelDesc)
+        containerView.addSubview(activityIndicator)
     }
     
     private func setUpConstraints(){
        // let topInset: CGFloat = 15
         NSLayoutConstraint.activate([
-            dogImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            dogImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            dogImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                        
+            containerView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 8),
+            containerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            dogImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            dogImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            dogImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             dogImageView.heightAnchor.constraint(equalToConstant: 300),
                
-            labelTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            labelTitle.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             labelTitle.topAnchor.constraint(equalTo: dogImageView.bottomAnchor, constant: 20),
                
             labelPrice.leadingAnchor.constraint(equalTo: labelTitle.leadingAnchor),
